@@ -1,0 +1,10 @@
+# .gitignore 파일 내용
+__pycache__/
+build/
+dist/
+*.spec
+venv/
+.idea/
+.vscode/
+*.user
+config.json
