@@ -340,9 +340,7 @@ class D2RLoaderApp(QMainWindow):
 
     def kill_all_exit(self):
         """ 모든 관련 프로세스 종료 및 프로그램 종료 """
-        targets = ["nunchi.exe", "D2R.exe", "D2RSO.exe", "Battle.net.exe"]
-        for t in targets:
-            ProcessManager.kill_process_by_name(t)
+        self.kill_all()
         QApplication.quit()
 
     def quit_loader(self):

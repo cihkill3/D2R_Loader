@@ -308,9 +308,9 @@ class D2RLoaderApp(QMainWindow):
 
     def kill_single(self, key):
         target = ""
-        if key == "nunchi": target = "Nunchi.exe"
+        if key == "nunchi": target = "Nunchi"
         elif key == "d2r": target = "D2R.exe"
-        elif key == "d2rso": target = "D2RSO.exe"
+        elif key == "d2rso": target = "D2RSO"
         
         ProcessManager.kill_process_by_name(target)
         if key == "d2r":
@@ -333,7 +333,7 @@ class D2RLoaderApp(QMainWindow):
 
     def kill_all(self):
         """ 모든 관련 프로세스 종료 및 프로그램 종료 """
-        targets = ["nunchi.exe", "D2R.exe", "D2RSO.exe", "Battle.net.exe"]
+        targets = ["nunchi", "D2R.exe", "D2RSO", "Battle.net.exe"]
         for t in targets:
             ProcessManager.kill_process_by_name(t)
         QApplication.quit()
@@ -360,8 +360,6 @@ class D2RLoaderApp(QMainWindow):
         action_run_all = QAction("🚀 전체 실행 (Run All)", self)
         action_run_all.triggered.connect(self.run_all)
         menu.addAction(action_run_all)
-        
-        menu.addSeparator()
 
         # 3. 전체 종료
         action_kill_all = QAction("🔥 전체 종료 (Kill All)", self)
