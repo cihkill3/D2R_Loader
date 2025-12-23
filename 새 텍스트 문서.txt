@@ -1,0 +1,31 @@
+# 설치
+
+pip install PyQt5 psutil pywin32 pyinstaller
+
+
+# 빌드
+
+pyinstaller --noconsole --onefile --icon=app_icon.ico --add-data "app_icon.ico;." --name="D2R_Loader" main.py
+
+
+
+# 1. 깃 저장소 초기화
+git init
+
+# 2. 현재 폴더의 모든 파일(gitignore 제외)을 스테이지에 올림
+git add .
+
+# 3. 변경 사항 커밋 (저장)
+git commit -m "D2R Loader 초기 버전 등록"
+
+
+# 4. 브랜치 이름을 main으로 변경 (요즘 표준)
+git branch -M main
+
+# 5. 원격 저장소 연결 (cihkill3 계정의 D2R_Loader로)
+git remote add origin https://github.com/cihkill3/D2R_Loader.git
+
+# 6. 깃허브로 파일 업로드
+git push -u origin main
+
+

@@ -284,7 +284,7 @@ class D2RLoaderApp(QMainWindow):
     def register_startup(self, enable):
         key_path = r"Software\Microsoft\Windows\CurrentVersion\Run"
         app_name = "D2RLoader"
-        exe_path = sys.executable
+        exe_path = f'"{sys.executable}"'
         
         try:
             key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_ALL_ACCESS)
@@ -308,9 +308,9 @@ class D2RLoaderApp(QMainWindow):
 
     def kill_single(self, key):
         target = ""
-        if key == "nunchi": target = "Nunchi"
+        if key == "nunchi": target = "Nunchi.exe"
         elif key == "d2r": target = "D2R.exe"
-        elif key == "d2rso": target = "D2RSO"
+        elif key == "d2rso": target = "D2RSO.exe"
         
         ProcessManager.kill_process_by_name(target)
         if key == "d2r":
@@ -332,10 +332,15 @@ class D2RLoaderApp(QMainWindow):
         if os.path.exists(self.config["d2rso_path"]): ProcessManager.run_process(self.config["d2rso_path"])
 
     def kill_all(self):
-        """ 모든 관련 프로세스 종료 및 프로그램 종료 """
-        targets = ["nunchi", "D2R.exe", "D2RSO", "Battle.net.exe"]
+        """ 모든 관련 프로세스 종료 """
+        targets = ["nunchi.exe", "D2R.exe", "D2RSO.exe", "Battle.net.exe"]
         for t in targets:
             ProcessManager.kill_process_by_name(t)
+        # QApplication.quit()
+
+    def kill_all_exit(self):
+        """ 모든 관련 프로세스 종료 및 프로그램 종료 """
+        self.kill_all()
         QApplication.quit()
 
     def quit_loader(self):
@@ -360,7 +365,7 @@ class D2RLoaderApp(QMainWindow):
         action_run_all = QAction("🚀 전체 실행 (Run All)", self)
         action_run_all.triggered.connect(self.run_all)
         menu.addAction(action_run_all)
-
+        
         # 3. 전체 종료
         action_kill_all = QAction("🔥 전체 종료 (Kill All)", self)
         action_kill_all.triggered.connect(self.kill_all)
@@ -368,8 +373,13 @@ class D2RLoaderApp(QMainWindow):
 
         menu.addSeparator()
 
-        # 4. 프로그램 종료
-        action_quit = QAction("로더 종료 (Exit)", self)
+        # 4. 전체 종료 & 프로그램 종료
+        action_kill_all_exit = QAction("⛔ 전체 && 로더 종료 (Kill All && Exit)", self)
+        action_kill_all_exit.triggered.connect(self.kill_all_exit)
+        menu.addAction(action_kill_all_exit)
+
+        # 5. 프로그램 종료
+        action_quit = QAction("🔚 로더 종료 (Exit)", self)
         action_quit.triggered.connect(self.quit_loader)
         menu.addAction(action_quit)
         
