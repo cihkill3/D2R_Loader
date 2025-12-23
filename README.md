@@ -1,6 +1,16 @@
 # D2R loader
 <br><br>
+## 설치
+```
+pip install PyQt5 psutil pywin32 pyinstaller
+```
+<br><br><br>
 
+## 빌드
+```
+pyinstaller --noconsole --onefile --icon=app_icon.ico --add-data "app_icon.ico;." --name="D2R_Loader" main.py
+```
+<br><br><br>
 ## git 설정
 ```
 git init
@@ -11,18 +21,18 @@ git branch -M master
 git push -u origin master
 ```
 <br><br><br>
-## 1. 깃허브 내용을 강제로 가져와서 합치기
+### 1. 깃허브 내용을 강제로 가져와서 합치기
 ```
 git pull origin master --allow-unrelated-histories
 ```
 <br><br><br>
-## 2. (합쳐진 후) 다시 올리기
+### 2. (합쳐진 후) 다시 올리기
 ```
 git push -u origin master
 ```
 <br><br><br>
 
-# .gitignore
+### .gitignore
 ```
 __pycache__/
 build/
@@ -35,8 +45,3 @@ venv/
 config.json
 ```
 <br><br><br>
-
-# build
-```
-pyinstaller --noconsole --onefile --icon=app_icon.ico --add-data "app_icon.ico;." --name="D2R_Loader" d2rloader.py
-```
